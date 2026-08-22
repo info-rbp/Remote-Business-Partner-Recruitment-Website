@@ -1,218 +1,104 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Search, Zap, Users, Briefcase, Globe, Target, ShieldCheck, TrendingUp } from 'lucide-react';
+import { ArrowRight, Briefcase, CheckCircle2, Search, Users } from 'lucide-react';
+import { useAppStore } from '../store';
+import { JobStatus } from '../types';
+import PublicNav from '../components/PublicNav';
 import Footer from '../components/Footer';
 
 const Website: React.FC = () => {
+  const { jobs } = useAppStore();
+  const featuredJobs = jobs.filter(job => job.status === JobStatus.OPEN).slice(0, 6);
+
   return (
-    <div className="font-sans text-slate-900 bg-white">
-      {/* Navigation */}
-      <nav className="border-b border-slate-100 sticky top-0 bg-white/80 backdrop-blur-md z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20 items-center">
-            <div className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-200">R</div>
-                <span className="font-bold text-2xl tracking-tight text-slate-900">Remote Business Partner</span>
-            </div>
-            <div className="hidden md:flex space-x-8 items-center">
-              <Link to="/careers" className="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors">Find a Job</Link>
-              <Link to="/for-candidates" className="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors">For Candidates</Link>
-              <Link to="/careers?tab=employers" className="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors">Hire Talent</Link>
-              <Link to="/platform-product" className="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors">Our Tech</Link>
-              <Link to="/blog" className="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors">Insights</Link>
-              <Link to="/login" className="px-5 py-2 bg-slate-900 text-white rounded-lg text-sm font-bold hover:bg-slate-800 transition-all">Client Login</Link>
-            </div>
+    <div className="min-h-screen bg-white text-slate-900">
+      <PublicNav />
+
+      <header className="relative overflow-hidden bg-slate-950 px-4 py-24 text-white sm:py-28">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(37,99,235,0.28),_transparent_34%),radial-gradient(circle_at_bottom_left,_rgba(14,165,233,0.16),_transparent_28%)]" />
+        <div className="relative mx-auto max-w-5xl text-center">
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-blue-300">Remote Business Partner Recruitment</p>
+          <h1 className="mt-5 text-5xl font-extrabold tracking-tight sm:text-7xl">Recruitment made straightforward</h1>
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300">We help employers recruit the people they need and help candidates access genuine opportunities through a clear, human-led recruitment process.</p>
+          <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
+            <Link to="/vacancies" className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-8 py-4 font-bold text-white hover:bg-blue-500"><Search className="h-5 w-5" /> View Current Vacancies</Link>
+            <Link to="/for-employers" className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-4 font-bold text-slate-900 hover:bg-slate-100"><Briefcase className="h-5 w-5" /> Recruit Staff</Link>
           </div>
         </div>
-      </nav>
+      </header>
 
-      {/* Hero Section */}
-      <div className="relative overflow-hidden pt-24 pb-32">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 pointer-events-none text-left">
-              <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-              <div className="absolute top-20 right-10 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-              <div className="absolute -bottom-32 left-1/2 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-          </div>
-
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-sm font-medium mb-8 animate-fade-in-up">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                  </span>
-                  Human Expertise Augmented by Gemini 2.5
+      <main>
+        <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 sm:p-10">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600"><Users className="h-6 w-6" /></div>
+              <h2 className="mt-6 text-3xl font-bold">Looking for your next role?</h2>
+              <p className="mt-4 leading-7 text-slate-600">Browse the positions we are currently recruiting for, learn more about how we work with candidates and apply directly online.</p>
+              <div className="mt-7 flex flex-wrap gap-4">
+                <Link to="/vacancies" className="inline-flex items-center gap-2 font-bold text-blue-600">Current Vacancies <ArrowRight className="h-4 w-4" /></Link>
+                <Link to="/for-candidates" className="inline-flex items-center gap-2 font-bold text-slate-700">For Candidates <ArrowRight className="h-4 w-4" /></Link>
               </div>
-              
-              <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-8 leading-tight animate-fade-in-up">
-                  The Future of Strategic <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Talent Acquisition</span>
-              </h1>
-              
-              <p className="max-w-3xl mx-auto text-xl text-slate-600 mb-10 leading-relaxed animate-fade-in-up animation-delay-1000">
-                  We don't just fill seats; we build high-performance teams. Remote Business Partner blends 
-                  deep industry headhunting expertise with proprietary AI technology to deliver the top 1% 
-                  of global talent to your doorstep.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animation-delay-2000">
-                  <Link 
-                    to="/careers?tab=employers" 
-                    className="w-full sm:w-auto px-10 py-4 bg-blue-600 text-white rounded-xl font-bold text-lg hover:bg-blue-700 transition-all shadow-xl shadow-blue-200 flex items-center justify-center gap-2"
-                  >
-                      <Briefcase className="w-5 h-5" />
-                      Partner With Us
+            </div>
+            <div className="rounded-3xl border border-blue-100 bg-blue-50 p-8 sm:p-10">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white"><Briefcase className="h-6 w-6" /></div>
+              <h2 className="mt-6 text-3xl font-bold">Looking for staff?</h2>
+              <p className="mt-4 leading-7 text-slate-600">Work with RBP through a straightforward fixed-fee recruitment model, from <strong>$750 + GST</strong> for casual and part-time employees and <strong>$1,500 + GST</strong> for full-time employees.</p>
+              <Link to="/for-employers" className="mt-7 inline-flex items-center gap-2 font-bold text-blue-700">For Employers <ArrowRight className="h-4 w-4" /></Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-slate-50 py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+              <div>
+                <p className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">Current Vacancies</p>
+                <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Roles we are recruiting for now</h2>
+              </div>
+              <Link to="/vacancies" className="inline-flex items-center gap-2 font-bold text-blue-600">View all vacancies <ArrowRight className="h-4 w-4" /></Link>
+            </div>
+
+            {featuredJobs.length > 0 ? (
+              <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                {featuredJobs.map(job => (
+                  <Link key={job.id} to={`/vacancies/${job.id}`} className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+                    <p className="text-xs font-bold uppercase tracking-widest text-blue-600">{job.type}</p>
+                    <h3 className="mt-3 text-xl font-bold group-hover:text-blue-600">{job.title}</h3>
+                    <p className="mt-2 text-sm text-slate-500">{job.location} · {job.department}</p>
+                    <p className="mt-4 line-clamp-2 text-sm leading-6 text-slate-600">{job.description}</p>
+                    <span className="mt-5 inline-flex items-center gap-2 font-bold text-blue-600">View role <ArrowRight className="h-4 w-4" /></span>
                   </Link>
-                  <Link 
-                    to="/careers" 
-                    className="w-full sm:w-auto px-10 py-4 bg-white text-slate-700 border border-slate-200 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all shadow-sm flex items-center justify-center gap-2"
-                  >
-                      <Search className="w-5 h-5" />
-                      Find a New Role
-                  </Link>
+                ))}
               </div>
-
-              {/* Ecosystem Preview */}
-              <div className="mt-20 relative mx-auto max-w-5xl rounded-3xl border border-slate-200 bg-white/50 shadow-2xl backdrop-blur overflow-hidden animate-fade-in-up animation-delay-4000">
-                   <div className="bg-slate-900 px-6 py-4 flex items-center justify-between">
-                       <div className="flex items-center gap-2 text-white">
-                           <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                           <span className="text-xs font-bold uppercase tracking-widest opacity-80">RBP Ecosystem: Live Transparency</span>
-                       </div>
-                       <div className="hidden sm:flex items-center gap-4 text-slate-400 text-[10px] font-bold uppercase tracking-widest">
-                           <span>Sourcing</span>
-                           <ArrowRight className="w-3 h-3" />
-                           <span>Vetting</span>
-                           <ArrowRight className="w-3 h-3" />
-                           <span>Placement</span>
-                       </div>
-                   </div>
-                   <div className="bg-slate-50 p-2 border-t border-slate-200">
-                       <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80" alt="Recruitment Ecosystem" className="rounded-2xl opacity-90 shadow-inner" />
-                   </div>
-                   <div className="p-6 bg-white flex flex-col md:flex-row gap-6 items-center justify-between text-left">
-                        <div className="flex-1">
-                            <h4 className="font-bold text-slate-900 mb-1">Proprietary Client Portal</h4>
-                            <p className="text-sm text-slate-500">Track every headhunting lead and interview stage in real-time with full AI-generated dossiers.</p>
-                        </div>
-                        <Link to="/platform-product" className="text-blue-600 font-bold text-sm flex items-center gap-1 hover:underline">Learn About Our Tech <ArrowRight className="w-4 h-4"/></Link>
-                   </div>
-              </div>
+            ) : (
+              <div className="mt-10 rounded-2xl border border-slate-200 bg-white p-10 text-center text-slate-600">There are no published vacancies at the moment. New opportunities will appear here as they are opened.</div>
+            )}
           </div>
-      </div>
+        </section>
 
-      {/* Services Grid */}
-      <div className="py-24 bg-slate-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
-              <div className="max-w-3xl mb-16">
-                  <h2 className="text-4xl font-bold text-slate-900 mb-4">Strategic Recruitment Solutions</h2>
-                  <p className="text-xl text-slate-600">We offer a range of specialized services designed to help scaling companies build world-class organizations without the traditional friction.</p>
-              </div>
+        <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">How we work</p>
+              <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Human-led recruitment with a clear process</h2>
+              <p className="mt-4 text-lg leading-8 text-slate-600">RBP focuses on understanding the role, reviewing the people behind the applications and keeping employers and candidates informed throughout the process.</p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {['Understand the role', 'Review candidates properly', 'Coordinate the appointment'].map(item => (
+                <div key={item} className="rounded-2xl border border-slate-200 p-6"><CheckCircle2 className="h-6 w-6 text-emerald-500" /><p className="mt-4 font-bold">{item}</p></div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-              <div className="grid md:grid-cols-3 gap-8">
-                  <div className="bg-white p-10 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
-                      <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-8">
-                          <Target className="w-7 h-7" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-slate-900 mb-4">Executive Search</h3>
-                      <p className="text-slate-600 leading-relaxed mb-8 flex-1">
-                          Our discreet, high-touch headhunting service for leadership roles. We identify and attract visionary talent that isn't actively on the job market.
-                      </p>
-                      <Link to="/careers?tab=employers" className="text-blue-600 font-bold flex items-center gap-2 group">
-                          Explore Search <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </Link>
-                  </div>
-                   <div className="bg-white p-10 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
-                      <div className="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600 mb-8">
-                          <Globe className="w-7 h-7" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-slate-900 mb-4">Remote Team Scaling</h3>
-                      <p className="text-slate-600 leading-relaxed mb-8 flex-1">
-                          Build entire departments across borders. We handle the sourcing, vetting, and local compliance checks so you can focus on building your product.
-                      </p>
-                      <Link to="/careers?tab=employers" className="text-purple-600 font-bold flex items-center gap-2 group">
-                          Scale Globally <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </Link>
-                  </div>
-                   <div className="bg-white p-10 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
-                      <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-8">
-                          <ShieldCheck className="w-7 h-7" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-slate-900 mb-4">Intelligent Vetting</h3>
-                      <p className="text-slate-600 leading-relaxed mb-8 flex-1">
-                          Using our Gemini-powered engine, we conduct deep technical and cultural assessments to ensure every candidate delivered is a perfect match.
-                      </p>
-                      <Link to="/platform-product" className="text-emerald-600 font-bold flex items-center gap-2 group">
-                          View Vetting Tech <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </Link>
-                  </div>
-              </div>
+        <section className="bg-blue-600 px-4 py-16 text-white">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl font-bold sm:text-4xl">Need help filling a role?</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-blue-100">See our fixed-fee recruitment approach, what is included and how to appoint Remote Business Partner.</p>
+            <Link to="/for-employers" className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-7 py-3.5 font-bold text-blue-700">View Employer Recruitment <ArrowRight className="h-4 w-4" /></Link>
           </div>
-      </div>
-
-      {/* Philosophy Section */}
-      <div className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid md:grid-cols-2 gap-20 items-center text-left">
-                  <div className="relative">
-                      <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Recruitment Excellence" className="rounded-3xl shadow-2xl" />
-                      <div className="absolute -bottom-10 -right-10 bg-slate-900 text-white p-8 rounded-3xl shadow-2xl max-w-xs hidden lg:block">
-                          <p className="text-3xl font-bold mb-2">98%</p>
-                          <p className="text-sm text-slate-400 font-medium leading-relaxed">Placement retention rate after 12 months for our executive search placements.</p>
-                      </div>
-                  </div>
-                  <div>
-                      <h2 className="text-4xl font-bold text-slate-900 mb-6">Our Recruitment Philosophy</h2>
-                      <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                          Traditional recruitment is broken. Agencies focus on volume; we focus on precision. 
-                          We treat your brand as our own, acting as a true business partner to ensure your 
-                          growth is sustained by high-quality human capital.
-                      </p>
-                      <div className="space-y-6">
-                          <div className="flex gap-4">
-                              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 flex-shrink-0">
-                                  <Users className="w-5 h-5" />
-                              </div>
-                              <div>
-                                  <h4 className="font-bold text-slate-900">Dedicated Account Partners</h4>
-                                  <p className="text-slate-500 text-sm mt-1">Direct access to a recruitment specialist who understands your specific niche and culture.</p>
-                              </div>
-                          </div>
-                          <div className="flex gap-4">
-                              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 flex-shrink-0">
-                                  <TrendingUp className="w-5 h-5" />
-                              </div>
-                              <div>
-                                  <h4 className="font-bold text-slate-900">Performance-Based Models</h4>
-                                  <p className="text-slate-500 text-sm mt-1">We win when you win. Our engagement models are structured to incentivize quality placements and long-term success.</p>
-                              </div>
-                          </div>
-                      </div>
-                      <Link 
-                        to="/careers?tab=employers" 
-                        className="mt-10 inline-flex items-center px-8 py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-all shadow-lg"
-                      >
-                          Schedule a Strategic Call
-                      </Link>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      {/* CTA Section */}
-      <div className="py-24 bg-blue-600 relative overflow-hidden">
-          <div className="absolute top-0 right-0 opacity-10 pointer-events-none">
-              <Zap className="w-[800px] h-[800px]" />
-          </div>
-          <div className="max-w-4xl mx-auto px-4 text-center relative z-10 text-white">
-              <h2 className="text-4xl font-bold mb-6">Ready to hire your next superstar?</h2>
-              <p className="text-xl text-blue-100 mb-10">Stop sifting through noise. Let our experts and technology find the talent you need to reach the next level.</p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
-                  <Link to="/careers?tab=employers" className="px-10 py-4 bg-white text-blue-600 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all shadow-xl">Hire a Specialist</Link>
-                  <Link to="/for-candidates" className="px-10 py-4 bg-blue-700 text-white border border-blue-500 rounded-xl font-bold text-lg hover:bg-blue-800 transition-all">Submit Your CV</Link>
-              </div>
-          </div>
-      </div>
+        </section>
+      </main>
 
       <Footer />
     </div>
