@@ -1,47 +1,39 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-slate-900 text-slate-400 py-16 border-t border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-12 mb-12 text-left">
-          <div className="col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">R</div>
-              <span className="font-bold text-xl tracking-tight text-white">Remote Business Partner</span>
-            </div>
-            <p className="max-w-sm text-slate-400">
-              The complete talent acquisition partner for high-growth teams. We blend executive headhunting expertise with proprietary AI intelligence to build world-class organizations.
-            </p>
-          </div>
+    <footer className="border-t border-slate-800 bg-slate-900 py-12 text-slate-400">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <h4 className="font-bold text-white mb-4">Services</h4>
-            <ul className="space-y-3">
-              <li><Link to="/platform-product" className="hover:text-blue-400 transition-colors">Our Technology</Link></li>
-              <li><Link to="/careers" className="hover:text-blue-400 transition-colors">Career Portal</Link></li>
-              <li><Link to="/careers?tab=employers" className="hover:text-blue-400 transition-colors">Client Solutions</Link></li>
-              <li><Link to="/login" className="hover:text-blue-400 transition-colors">Admin Login</Link></li>
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 font-bold text-white">R</div>
+              <span className="text-lg font-bold text-white">Remote Business Partner</span>
+            </div>
+            <p className="mt-4 max-w-sm text-sm leading-6">Straightforward, human-led recruitment for employers and candidates.</p>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-white">Recruitment</h4>
+            <ul className="mt-4 space-y-3 text-sm">
+              <li><Link to="/vacancies" className="transition-colors hover:text-white">Current Vacancies</Link></li>
+              <li><Link to="/for-candidates" className="transition-colors hover:text-white">For Candidates</Link></li>
+              <li><Link to="/for-employers" className="transition-colors hover:text-white">For Employers</Link></li>
             </ul>
           </div>
+
           <div>
-            <h4 className="font-bold text-white mb-4">Insights</h4>
-            <ul className="space-y-3">
-              <li><a href="#" className="hover:text-blue-400 transition-colors">About Us</a></li>
-              <li><Link to="/blog" className="hover:text-blue-400 transition-colors">Hiring Blog</Link></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Case Studies</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
+            <h4 className="font-bold text-white">Access</h4>
+            <ul className="mt-4 space-y-3 text-sm">
+              <li><Link to="/login" className="transition-colors hover:text-white">Staff Login</Link></li>
             </ul>
           </div>
         </div>
-        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm">&copy; {new Date().getFullYear()} Remote Business Partner. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#" className="text-slate-500 hover:text-white transition-colors text-sm">Twitter</a>
-            <a href="#" className="text-slate-500 hover:text-white transition-colors text-sm">LinkedIn</a>
-            <a href="#" className="text-slate-500 hover:text-white transition-colors text-sm">GitHub</a>
-          </div>
+
+        <div className="mt-10 flex flex-col gap-3 border-t border-slate-800 pt-6 text-sm sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; {new Date().getFullYear()} Remote Business Partner. All rights reserved.</p>
+          <p className="text-slate-500">Recruitment services for employers and candidates.</p>
         </div>
       </div>
     </footer>

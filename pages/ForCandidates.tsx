@@ -1,76 +1,89 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Sparkles, Zap, Shield } from 'lucide-react';
+import { ArrowRight, CheckCircle2, MessageSquare, Search, ShieldCheck, UserCheck, Users } from 'lucide-react';
+import PublicNav from '../components/PublicNav';
 import Footer from '../components/Footer';
 
 const ForCandidates: React.FC = () => {
+  const benefits = [
+    { icon: UserCheck, title: 'Human-led recruitment', text: 'Applications are reviewed by our recruitment team. We focus on your experience, circumstances and suitability for the role.' },
+    { icon: MessageSquare, title: 'Clear communication', text: 'We aim to keep candidates informed about where they are in the process and what happens next.' },
+    { icon: Search, title: 'Relevant opportunities', text: 'Our focus is on introducing candidates to roles where there is a genuine alignment between the person, position and employer.' },
+    { icon: ShieldCheck, title: 'Respect and confidentiality', text: 'We treat candidate information with care and discuss opportunities with you before progressing your application with an employer.' },
+  ];
+
+  const steps = [
+    ['1', 'Apply', 'Apply for a current vacancy or submit your details to our candidate network.'],
+    ['2', 'Initial review', 'Our recruitment team reviews your experience against the requirements of the opportunity.'],
+    ['3', 'Conversation', 'Where there appears to be a fit, we speak with you about the role, your experience and what you are looking for.'],
+    ['4', 'Employer introduction', 'Suitable candidates are introduced to the employer once the opportunity and next steps have been discussed.'],
+    ['5', 'Interview', 'We coordinate the interview process and help keep communication moving between you and the employer.'],
+    ['6', 'Outcome', 'We communicate the outcome and, where appropriate, may consider you for other suitable opportunities.'],
+  ];
+
   return (
-    <div className="font-sans text-slate-900 bg-white">
-      {/* Navigation */}
-      <nav className="border-b border-slate-100 sticky top-0 bg-white/80 backdrop-blur-md z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
-          <div className="flex justify-between h-20 items-center">
-            <Link to="/" className="flex items-center gap-2 cursor-pointer text-left">
-                <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-200">R</div>
-                <span className="font-bold text-2xl tracking-tight text-slate-900">Remote Business Partner</span>
-            </Link>
-            <div className="hidden md:flex space-x-8 items-center text-left">
-              <Link to="/careers" className="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors">Current Vacancies</Link>
-              <Link to="/for-candidates" className="text-sm font-medium text-blue-600">Candidates</Link>
-              <Link to="/careers?tab=employers" className="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors">Employers</Link>
-              <Link to="/platform-product" className="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors">Platform</Link>
-              <Link to="/blog" className="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors">Blog</Link>
-            </div>
+    <div className="min-h-screen bg-white text-slate-900">
+      <PublicNav />
+      <header className="bg-slate-900 px-4 py-20 text-white sm:py-24">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-blue-300">For Candidates</p>
+          <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-6xl">A more straightforward recruitment experience</h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">We believe candidates should understand the opportunity, know where they stand and deal with real people throughout the recruitment process.</p>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link to="/vacancies" className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-7 py-3.5 font-bold text-white hover:bg-blue-500">View Current Vacancies <ArrowRight className="h-4 w-4" /></Link>
+            <a href="#candidate-network" className="inline-flex items-center justify-center rounded-xl border border-slate-600 px-7 py-3.5 font-bold text-white hover:bg-slate-800">Join Our Candidate Network</a>
           </div>
         </div>
-      </nav>
+      </header>
 
-      {/* Hero */}
-      <div className="relative pt-20 pb-24 bg-slate-50 overflow-hidden text-left">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 border border-purple-100 text-purple-700 text-sm font-medium mb-8">
-                  <Sparkles className="w-4 h-4" /> Candidate Experience 2.0
+      <main>
+        <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">Why candidates work with us</p>
+            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Recruitment should feel personal, not transactional</h2>
+            <p className="mt-4 text-lg leading-8 text-slate-600">Our role is to help candidates understand the opportunity and help employers make informed hiring decisions. That works best when communication is clear and the process is handled properly.</p>
+          </div>
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {benefits.map(({ icon: Icon, title, text }) => (
+              <div key={title} className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600"><Icon className="h-6 w-6" /></div>
+                <h3 className="mt-5 text-xl font-bold">{title}</h3>
+                <p className="mt-3 leading-7 text-slate-600">{text}</p>
               </div>
-            <h1 className="text-5xl md:text-6xl font-extrabold text-slate-900 mb-6 leading-tight">
-                Accelerate Your Career with <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Intelligent Matching</span>
-            </h1>
-            <p className="max-w-2xl mx-auto text-xl text-slate-600 mb-10 leading-relaxed">
-                Stop applying into the void. Our AI-powered platform gets your profile in front of the right hiring managers, instantly.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                 <Link to="/careers" className="px-8 py-4 bg-blue-600 text-white rounded-xl font-bold text-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 flex items-center gap-2 text-left">
-                      <Search className="w-5 h-5" /> Browse Jobs
-                  </Link>
-            </div>
-        </div>
-      </div>
+            ))}
+          </div>
+        </section>
 
-      {/* Features */}
-       <div className="py-24 bg-white text-left">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
-                <div className="grid md:grid-cols-3 gap-12 text-left">
-                     <div className="text-center text-left">
-                        <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-600 mx-auto mb-6"><Sparkles className="w-8 h-8" /></div>
-                        <h3 className="text-xl font-bold text-slate-900 mb-4">AI Smart Match</h3>
-                        <p className="text-slate-600">Our algorithms highlight your skills and experience.</p>
-                    </div>
-                     <div className="text-center text-left">
-                        <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 mx-auto mb-6 text-left"><Zap className="w-8 h-8" /></div>
-                        <h3 className="text-xl font-bold text-slate-900 mb-4 text-left mx-auto">Fast-Track Review</h3>
-                        <p className="text-slate-600 text-left mx-auto max-w-xs">Verified candidates get priority status in the pipeline.</p>
-                    </div>
-                     <div className="text-center text-left">
-                        <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 mx-auto mb-6"><Shield className="w-8 h-8" /></div>
-                        <h3 className="text-xl font-bold text-slate-900 mb-4">Trusted Roles</h3>
-                        <p className="text-slate-600">We personally vet every company.</p>
-                    </div>
+        <section className="bg-slate-50 py-20">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">Our Process</p>
+              <h2 className="mt-3 text-3xl font-bold sm:text-4xl">What happens when you apply</h2>
+              <p className="mt-4 text-lg leading-8 text-slate-600">A simple process, with a human being involved at every meaningful stage.</p>
+            </div>
+            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {steps.map(([number, title, text]) => (
+                <div key={number} className="rounded-2xl border border-slate-200 bg-white p-6">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 font-bold text-white">{number}</div>
+                  <h3 className="mt-4 text-lg font-bold">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{text}</p>
                 </div>
+              ))}
             </div>
-       </div>
+          </div>
+        </section>
 
-       <Footer />
+        <section id="candidate-network" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="grid gap-8 rounded-3xl bg-blue-600 p-8 text-white md:grid-cols-[1fr_auto] md:items-center sm:p-10">
+            <div>
+              <div className="flex items-center gap-3"><Users className="h-7 w-7" /><h2 className="text-2xl font-bold sm:text-3xl">Not seeing the right role today?</h2></div>
+              <p className="mt-3 max-w-2xl text-blue-100">Keep an eye on our Current Vacancies page. A dedicated candidate-network submission form can be added as the next release without holding up the initial launch.</p>
+            </div>
+            <Link to="/vacancies" className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 font-bold text-blue-700">Browse Vacancies <ArrowRight className="h-4 w-4" /></Link>
+          </div>
+        </section>
+      </main>
+      <Footer />
     </div>
   );
 };
